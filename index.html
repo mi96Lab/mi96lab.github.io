@@ -14,9 +14,7 @@
       --muted: #6b6b60;
       --border: #ddd9d0;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       background: var(--bg);
       color: var(--ink);
@@ -25,8 +23,6 @@
       line-height: 1.8;
       min-height: 100vh;
     }
-
-    /* ── HEADER ── */
     header {
       display: flex;
       justify-content: space-between;
@@ -34,7 +30,198 @@
       padding: 2rem 4rem;
       border-bottom: 1px solid var(--border);
     }
-
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    nav a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+    .hero {
+      padding: 7rem 4rem 5rem;
+      max-width: 900px;
+    }
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.9;
+    }
+    .divider {
+      margin: 0 4rem;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+    .apps { padding: 5rem 4rem; }
+    .section-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+    .app-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 2.5rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      max-width: 600px;
+      transition: box-shadow 0.2s;
+    }
+    .app-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
+    .app-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 2rem;
+    }
+    .app-info h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .app-info p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      line-height: 1.7;
+    }
+    .app-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.85rem;
+      background: var(--accent);
+      color: white;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .app-badge:hover { opacity: 0.8; }
+    .about {
+      padding: 5rem 4rem;
+      background: var(--accent-light);
+    }
+    .about-inner { max-width: 600px; }
+    .about h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .about p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .contact { padding: 5rem 4rem; }
+    .contact h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .contact p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact a:hover { text-decoration: underline; }
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    @media (max-width: 640px) {
+      header, .hero, .apps, .about, .contact, footer, .divider { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .divider { margin: 0 1.5rem; }
+      .app-card { flex-direction: column; gap: 1.2rem; }
+      footer { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">mi96 Lab</a>
+    <nav>
+      <a href="#apps">Apps</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <section class="hero">
+    <p class="hero-label">iOS App Studio</p>
+    <h1>シンプルで<br>使いやすい<br>アプリを。</h1>
+    <p>mi96 Labは、日常をちょっとだけ便利にするiOSアプリを個人で開発・提供しているスタジオです。</p>
+  </section>
+  <hr class="divider">
+  <section class="apps" id="apps">
+    <p class="section-title">Apps</p>
+    <div class="app-card">
+      <div class="app-icon">📒</div>
+      <div class="app-info">
+        <h2>ログミィ</h2>
+        <p>フリーランスや個人事業主のライブ配信者ための、報酬記録アプリ。手軽に記録をつけて、報酬を分析できます。</p>
+        <a class="app-badge" href="https://apps.apple.com/jp/app/id6761517076" target="_blank">App Store で見る</a>
+      </div>
+    </div>
+  </section>
+  <section class="about" id="about">
+    <div class="about-inner">
+      <p class="section-title">About</p>
+      <h2>mi96 Lab について</h2>
+      <p>mi96 Lab（ミクロラボ）は、個人のiOSアプリ開発スタジオです。配信活動しています。</p>
+      <p>「報酬を分析してもっと稼ぎたい」という思いから、あったら嬉しいアプリを作っています。</p>
+    </div>
+  </section>
+  <section class="contact" id="contact">
+    <p class="section-title">Contact</p>
+    <h2>お問い合わせ</h2>
+    <p>ご意見・ご要望・不具合のご報告はこちらからどうぞ。</p>
+    <p><a href="mailto:nk.mffy@gmail.com">nk.mffy@gmail.com</a></p>
+  </section>
+  <footer>
+    <span>© 2025 mi96 Lab</span>
+  </footer>
+</body>
+</html>
     .logo {
       font-family: 'DM Serif Display', serif;
       font-size: 1.5rem;
