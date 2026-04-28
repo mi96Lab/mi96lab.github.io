@@ -1,40 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mi96 Lab — iOSアプリ開発</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --ink: #1a1a18;
+      --accent: #2d5a3d;
+      --accent-light: #e8f0ea;
+      --muted: #6b6b60;
+      --border: #ddd9d0;
+    }
 
-Claudeが応答を完了しました
-あなたの入力: Apple Developer Programを個人から組織の変更を申請したらこんなメールが返ってきた。ひとつづつ手伝って。
-Apple Developer Programを個人から組織の変更を申請したらこんなメールが返ってきた。ひとつづつ手伝って。
-お世話になっております。
-個人メンバーシップから企業メンバーシップへの移行を開始することができます。まずは以下の重要事項をご確認ください。
-1. Apple Developer Program で使用する Apple Account で Apple Account の 2 ファクタ認証を有効にする必要があります。
-2. 有効な Web サイトが必要です。Web サイトが公開され、ドメイン名が企業に関連付けられている必要があります。
-3. 移行の処理中は「Certificates, Identifiers & Profiles」(証明書、ID、プロファイル) ポータルをご利用いただけません。App Store Connect を含むその他すべてのデベロッパ向けリソースは引き続きご利用いただけます。
-4.移行が完了すると、組織名が App Store で配布するすべての App に適用されます。
-5. 移行が完了すると、個人メンバーシップの「売上とトレンド」のレポートはご利用いただけなくなります。
-6. 有償のアプリやアプリ内課金のあるアプリを配布する場合、移行の完了前に得られた収益は、移行の開始時点で有効な銀行口座に振り込まれます。これらの収益の振込先を変更するには、移行の開始前に銀行口座を変更する必要があります。
-本件「ケース番号：102876687553」は、私、野村が担当させていただきます。ご連絡の際は、このメールにご返信いただくか、こちらのリンクから音声メッセージやテキストメッセージをお送りいただくこともできます。今回のお問い合わせ内容についてメッセージをお送りいただくには、登録されている Apple Account でのサインインが必要です。
-よろしくお願いいたします。
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-もっと表示
-20:51
-Claudeが返答しました: わかりました！ひとつずつ一緒に確認していきましょう。
-わかりました！ひとつずつ一緒に確認していきましょう。
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
 
-まず、6つの確認事項を整理すると：
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 4rem;
+      border-bottom: 1px solid var(--border);
+    }
 
-2ファクタ認証 — Apple Accountで有効になっているか確認
-有効なWebサイト — mi96lab.com が公開されていて、組織名と関連付けられているか
-移行中は証明書ポータルが使えない — 知っておくだけでOK（対応不要）
-App Storeの表示名が組織名になる — 知っておくだけでOK
-売上レポートが変わる — 知っておくだけでOK
-銀行口座の振込先 — 移行前に確認が必要
-まず最初に確認したいのですが、今どの項目が「まだ対応できていないかもしれない」と思っていますか？
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
 
-たとえば：
+    nav a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
 
-2ファクタ認証がちゃんとONになっているか自信がない
-mi96lab.com が「組織に関連付けられたサイト」として大丈夫か不安
-銀行口座の確認方法がわからない
-…など、気になっているところを教えてもらえると、そこから順番にサポートできます！
+    /* ── HERO ── */
+    .hero {
+      padding: 7rem 4rem 5rem;
+      max-width: 900px;
+    }
 
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.9;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      margin: 0 4rem;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── APPS ── */
+    .apps {
+      padding: 5rem 4rem;
+    }
+
+    .section-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+
+    .app-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 2.5rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      max-width: 600px;
+      transition: box-shadow 0.2s;
+    }
+    .app-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+    }
+
+    .app-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 2rem;
+    }
+
+    .app-info h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .app-info p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      line-height: 1.7;
+    }
+
+    .app-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.85rem;
+      background: var(--accent);
+      color: white;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .app-badge:hover { opacity: 0.8; }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 5rem 4rem;
+      background: var(--accent-light);
+    }
+
+    .about-inner {
+      max-width: 600px;
+    }
+
+    .about h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .about p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 5rem 4rem;
+    }
+
+    .contact h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      header, .hero, .apps, .about, .contact, footer, .divider { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .divider { margin: 0 1.5rem; }
+      .app-card { flex-direction: column; gap: 1.2rem; }
+      footer { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="/">mi96 Lab</a>
+    <nav>
+      <a href="#apps">Apps</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <p class="hero-label">iOS App Studio</p>
+    <h1>シンプルで<br>使いやすい<br>アプリを。</h1>
+    <p>mi96 Labは、日常をちょっとだけ便利にするiOSアプリを個人で開発・提供しているスタジオです。</p>
+  </section>
+
+  <hr class="divider">
+
+  <section class="apps" id="apps">
+    <p class="section-title">Apps</p>
+    <div class="app-card">
+      <div class="app-icon">📒</div>
+      <div class="app-info">
+        <h2>ログミィ</h2>
+        <p>フリーランスや個人事業主のための、シンプルな収入記録アプリ。手軽にログをつけて、収入の流れを把握できます。</p>
+        <a class="app-badge" href="https://apps.apple.com/jp/app/id6761517076" target="_blank">App Store で見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-inner">
+      <p class="section-title">About</p>
+      <h2>mi96 Lab について</h2>
+      <p>mi96 Lab（ミクロラボ）は、chihiro nakahara が運営する個人のiOSアプリ開発スタジオです。屋号として活動しています。</p>
+      <p>「シンプルで本当に使えるもの」を大切に、ひとつひとつのアプリを丁寧に作っています。</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="section-title">Contact</p>
+    <h2>お問い合わせ</h2>
+    <p>ご意見・ご要望・不具合のご報告はこちらからどうぞ。</p>
+    <p><a href="mailto:nk.mffy@gmail.com">nk.mffy@gmail.com</a></p>
+  </section>
+
+  <footer>
+    <span>© 2025 mi96 Lab</span>
+    <span>chihiro nakahara</span>
+  </footer>
+
+</body>
+</html>
 あなたの入力: 全部です。それも初めてかつ初心者なので小学生にもわかる説明してください。
 全部です。それも初めてかつ初心者なので小学生にもわかる説明してください。
 
